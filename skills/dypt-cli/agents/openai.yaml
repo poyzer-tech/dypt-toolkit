@@ -1,0 +1,3 @@
+display_name: dypt CLI
+short_description: Work with dypt tasks through the dypt CLI.
+default_prompt: Use dypt to inspect my tasks, choose the next useful work, and keep task notes and status updated.
