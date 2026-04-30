@@ -12,6 +12,7 @@ dypt task summary <branch>
 dypt task plan focus <branch>
 dypt task plan next-actions <branch>
 dypt task list --scope <branch> --priority high --status "not started" --show-path
+dypt task get <task>
 ```
 
 Recommended agent behavior:
@@ -19,6 +20,8 @@ Recommended agent behavior:
 - Start with the user's stated goal, not only the highest-scored CLI output.
 - Prefer unblocked leaf tasks with clear notes and high/urgent metadata.
 - Explain the recommended next task with both id and abbreviated title.
+- CLI table output can truncate long titles, so use `dypt task get <task>`
+  before reporting a long title back to the user.
 - If the branch structure is stale, propose note/metadata updates rather than
   reshaping hierarchy by default.
 

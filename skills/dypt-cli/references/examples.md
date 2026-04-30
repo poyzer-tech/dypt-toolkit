@@ -81,6 +81,25 @@ Expected behavior:
 - Create the task in the proper branch.
 - Add enough notes that another agent can implement it.
 
+## Example: Ambiguous Follow-Up Task
+
+User intent: "Create a follow-up task for improving this later."
+
+Commands:
+
+```bash
+dypt task search "improving this later"
+dypt task list --scope <likely-branch> --show-path
+```
+
+Expected behavior:
+
+- Search first to avoid duplicating existing work.
+- If the parent or scope is not clear from the user request, current session,
+  repository instructions, or dypt hierarchy, ask the user where the task should
+  go before creating it.
+- Do not guess a durable task location when multiple plausible parents exist.
+
 ## Example: Reprioritise Without Restructuring
 
 User intent: "Make the work I care about surface on the dashboard."

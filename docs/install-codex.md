@@ -33,6 +33,15 @@ rm -rf "$tmp_dir"
 
 Restart Codex after installing or updating the skill.
 
+If you are validating the install in the same Codex session, automatic skill
+discovery may not pick up the new skill until restart. For immediate
+same-session validation, manually inspect the installed skill:
+
+```bash
+codex_home="${CODEX_HOME:-$HOME/.codex}"
+sed -n '1,220p' "$codex_home/skills/dypt-cli/SKILL.md"
+```
+
 ## Install Through Codex
 
 If your Codex session has the skill installer available, you can also ask Codex:
@@ -63,7 +72,7 @@ You can also verify the skill files exist:
 
 ```bash
 codex_home="${CODEX_HOME:-$HOME/.codex}"
-ls "$codex_home/skills/dypt-cli"
+find "$codex_home/skills/dypt-cli" -maxdepth 2 -type f | sort
 ```
 
 ## Use With Project Instructions

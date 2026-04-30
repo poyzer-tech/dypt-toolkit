@@ -50,7 +50,7 @@ Expected behavior:
 You can also verify the skill files exist:
 
 ```bash
-ls ~/.claude/skills/dypt-cli
+find ~/.claude/skills/dypt-cli -maxdepth 2 -type f | sort
 ```
 
 ## Use With Project Instructions
