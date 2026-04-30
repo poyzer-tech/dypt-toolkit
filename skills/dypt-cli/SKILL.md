@@ -12,12 +12,18 @@ repository names dypt as its work tracker.
 
 - Use dypt tasks as the canonical work tracker.
 - Search before creating new tasks to avoid duplicates.
+- If the right parent or scope is not clear from the user request, current
+  session, or repository guidance such as `AGENTS.md` or `CLAUDE.md`, ask the
+  user to confirm before creating or moving tasks.
 - Read task notes, children, dependencies, and nearby branch context before
   changing work.
 - Use dypt notes for durable handoff context, decisions, and implementation
   details.
-- Use dypt task links in notes as `[#123](#task-123)`. Do not repeat the task
-  title after the link because dypt renders it automatically.
+- For task references in notes, use dypt task links as `[#123](#task-123)`. Do
+  not repeat the task title after the link because dypt renders it
+  automatically.
+- Format longer notes with markdown headings and bullets rather than one large
+  paragraph.
 - Do not set leaf tasks to `in progress`; dypt derives `in progress` for parent
   tasks from child state.
 - Preview cleanup operations before applying them.

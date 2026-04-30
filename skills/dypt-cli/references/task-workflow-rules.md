@@ -11,6 +11,12 @@ dependencies, or status.
 - If follow-up work is real, create or update a dypt task.
 - Search first with `dypt task search`, `dypt note search`, or filtered
   `dypt task list` before creating a new task.
+- Before creating or moving a task, identify the correct parent or scope from
+  the user request, current session context, existing dypt hierarchy, or
+  repository guidance files such as `AGENTS.md` or `CLAUDE.md`.
+- If the correct parent or scope remains ambiguous, ask the user to confirm.
+  Do not guess a durable task location when the hierarchy is part of the user's
+  workflow.
 
 ## Before Changing Work
 
@@ -45,9 +51,13 @@ dypt task plan metadata <ref> --leaves-only
 ## Notes Rules
 
 - Use markdown headings and bullets for readable notes.
+- For notes longer than a sentence or two, structure the note with markdown
+  headings, short paragraphs, and bullets. Do not write a single dense block of
+  text.
 - Capture durable context: decisions, acceptance criteria, implementation notes,
   risks, validation, and handoff.
-- Use dypt task links as `[#123](#task-123)`.
+- When referencing other tasks in notes, use dypt task links as
+  `[#123](#task-123)`.
 - Do not write `[#123](#task-123) Task title`; dypt renders the title
   automatically and duplicated titles are noisy.
 - When updating a note, preserve useful existing context unless the user asked
