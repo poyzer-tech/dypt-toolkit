@@ -50,10 +50,10 @@ dypt task plan metadata <ref> --leaves-only
 
 ## Notes Rules
 
-- Use markdown headings and bullets for readable notes.
-- For notes longer than a sentence or two, structure the note with markdown
-  headings, short paragraphs, and bullets. Do not write a single dense block of
-  text.
+- Use appropriate markdown formatting so notes are well presented and readable.
+- For notes longer than a sentence or two, structure the note with headings,
+  paragraphs, lists, or other markdown formatting as appropriate. Do not write a
+  single dense block of text.
 - Capture durable context: decisions, acceptance criteria, implementation notes,
   risks, validation, and handoff.
 - When referencing other tasks in notes, use dypt task links as

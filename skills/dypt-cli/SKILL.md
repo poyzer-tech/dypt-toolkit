@@ -22,8 +22,8 @@ repository names dypt as its work tracker.
 - For task references in notes, use dypt task links as `[#123](#task-123)`. Do
   not repeat the task title after the link because dypt renders it
   automatically.
-- Format longer notes with markdown headings and bullets rather than one large
-  paragraph.
+- Format longer notes with appropriate markdown so they are well presented and
+  readable rather than one large paragraph.
 - Do not set leaf tasks to `in progress`; dypt derives `in progress` for parent
   tasks from child state.
 - Preview cleanup operations before applying them.
