@@ -94,29 +94,10 @@ Recommended agent behavior:
   wants that structure.
 - Keep notes aligned with the new prioritisation if the reason is important.
 
-## Workflow Capture and Productisation
+## Content or Documentation Task Loop
 
-Use when repeated CLI + agent behavior looks like it could become a native dypt
-feature, command, or documented workflow.
-
-```bash
-dypt task create "Product candidate: native next best task recommendations" --parent <workflow-parent>
-dypt note set <task> "## Candidate
-
-Capture the repeated workflow, user goal, CLI steps, missing app affordance, and
-possible product shape."
-```
-
-Recommended agent behavior:
-
-- Capture repeatable workflows as tasks under the relevant productisation parent.
-- Link related tasks with `[#id](#task-id)` instead of duplicating titles.
-- Separate "playbook we can use now" from "product candidate we may build
-  later".
-
-## Docs and Marketing Iteration
-
-Use when implementing public-facing docs or marketing pages from dypt tasks.
+Use when implementing content, documentation, changelog, website, help, or copy
+changes from dypt tasks.
 
 ```bash
 dypt note get <task>
@@ -126,7 +107,8 @@ dypt task update <task> --status completed
 
 Recommended agent behavior:
 
-- Keep copy changes grounded in the user's positioning.
-- Validate rendered pages when possible.
-- Capture remaining docs gaps as tasks, especially when another workstream owns
-  the broader docs refresh.
+- Read the task note for audience, intent, constraints, and acceptance criteria.
+- Keep edits grounded in the user's stated positioning and terminology.
+- Validate rendered output or generated artifacts when possible.
+- Update the task note with what changed and how it was validated.
+- Capture remaining content gaps as dypt tasks rather than loose TODOs.
