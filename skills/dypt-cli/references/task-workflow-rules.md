@@ -56,6 +56,9 @@ dypt task plan metadata <ref> --leaves-only
   single dense block of text.
 - Capture durable context: decisions, acceptance criteria, implementation notes,
   risks, validation, and handoff.
+- When referring to tasks back to the user in chat or handoff, include both the
+  task id and a short title, for example `#123 Add CLI docs`. Do not rely on the
+  id alone.
 - When referencing other tasks in notes, use dypt task links as
   `[#123](#task-123)`.
 - Do not write `[#123](#task-123) Task title`; dypt renders the title

@@ -19,6 +19,8 @@ repository names dypt as its work tracker.
   changing work.
 - Use dypt notes for durable handoff context, decisions, and implementation
   details.
+- When referring to tasks in chat or handoff back to the user, include both the
+  task id and a short title, for example `#123 Add CLI docs`.
 - For task references in notes, use dypt task links as `[#123](#task-123)`. Do
   not repeat the task title after the link because dypt renders it
   automatically.
