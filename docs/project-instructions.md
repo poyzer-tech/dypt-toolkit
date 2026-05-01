@@ -10,7 +10,31 @@ equivalent agent instruction file.
 ```markdown
 ## Work Tracking with dypt
 
-This project uses dypt tasks as the canonical work tracker.
+This project uses dypt tasks as the canonical work tracker. Use the dypt CLI
+before creating, changing, or reporting on repo work.
+
+### Getting Started
+
+Check that the CLI is available and authenticated:
+
+```bash
+dypt --version
+dypt auth status
+```
+
+If the CLI is missing, install it with:
+
+```bash
+npm install -g @dypt/cli
+```
+
+If the dypt CLI skill is not available in this agent session, tell the user and
+offer to install it:
+
+```bash
+dypt agent install codex
+dypt agent install claude
+```
 
 When working on repo tasks:
 
