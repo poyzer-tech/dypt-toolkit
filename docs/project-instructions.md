@@ -55,6 +55,9 @@ When working on repo tasks:
 - Do not create a parallel markdown TODO tracker.
 - Do not set leaf tasks to `in progress`; dypt derives `in progress` for parent
   tasks from child state.
+- When creating a task tree from an implementation plan, set task positions to
+  match the recommended execution order. Use visible order for sequencing and
+  dependencies only for true blocker relationships.
 - Preview cleanup or bulk changes before applying them when preview is
   available.
 - If the `dypt-cli` skill is available, use it for dypt task workflows.
@@ -87,4 +90,7 @@ dypt dep list <ref>
 dypt task plan next-actions <ref>
 dypt task plan focus <ref>
 dypt task plan metadata <ref> --leaves-only
+dypt task update <ref> --position <n>
+dypt task reorder <ref-1> <ref-2> <ref-3> --preview
+dypt task reorder <ref-1> <ref-2> <ref-3>
 ```

@@ -71,6 +71,13 @@ dypt task plan metadata <ref> --leaves-only
 - Preserve the user's activity-based hierarchy unless they ask to restructure it.
 - Prefer metadata such as priority, deadline, and expected time to surface focus
   work rather than moving tasks into artificial focus folders.
+- Use task position for visible sibling ordering. When creating a task tree from
+  an implementation plan, order siblings to match the recommended execution
+  order.
+- Use dependencies only for true blocker relationships, not as a substitute for
+  display or execution order.
+- Preview full sibling reorders with `dypt task reorder ... --preview` before
+  applying them.
 - For bulk changes, generate the task ids with `task list`, `task search`, or
   planning helpers, then preview the bulk operation where supported.
 - Preview cleanup before applying.

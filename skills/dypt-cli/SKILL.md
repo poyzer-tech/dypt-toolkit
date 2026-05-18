@@ -28,6 +28,9 @@ repository names dypt as its work tracker.
   readable rather than one large paragraph.
 - Do not set leaf tasks to `in progress`; dypt derives `in progress` for parent
   tasks from child state.
+- When creating a task tree from an implementation plan, set task positions to
+  match the recommended execution order. Use visible order for sequencing and
+  dependencies only for true blocker relationships.
 - Preview cleanup operations before applying them.
 - Track discovered follow-up work as dypt tasks.
 - Keep task status and notes current before handing off.
@@ -39,7 +42,9 @@ repository names dypt as its work tracker.
    and dependencies as needed.
 2. Plan: use `plan next-actions`, `plan focus`, or `plan metadata` when the user
    asks what to do next or how to prioritise.
-3. Act: implement or organize the work requested by the user.
+3. Act: implement or organize the work requested by the user. When organizing
+   sibling tasks, use `task update --position` for one-off moves and
+   `task reorder --preview` before applying a full sibling order.
 4. Record: update task notes with durable context and mark tasks completed only
    when the work is actually done.
 5. Handoff: create dypt tasks for remaining work instead of leaving loose TODOs.

@@ -98,11 +98,34 @@ dypt task update 123 --priority high
 dypt task update 123 --deadline 2026-05-05
 dypt task update 123 --expected-time 45
 dypt task update 123 --actual-time 50
+dypt task update 123 --position 2
 dypt task update 123 --status completed
 ```
 
 Do not set a leaf task to `in progress`. Complete leaf tasks only when done.
 Parent `in progress` state is derived from children.
+
+## Position and Reorder Tasks
+
+Sibling tasks are displayed in position order in tree views. Use positions to
+capture the intended execution or reading order for task trees. Use
+dependencies only when one task is genuinely blocked by another.
+
+Move a single task within its current sibling set:
+
+```bash
+dypt task update 123 --position 0
+```
+
+Preview and then apply a complete sibling order:
+
+```bash
+dypt task reorder 103 101 102 --parent 100 --preview
+dypt task reorder 103 101 102 --parent 100
+```
+
+Use `--parent root` when reordering root-level tasks. Omit `--parent` only when
+the provided tasks have an unambiguous shared parent.
 
 ## Bulk Updates
 
