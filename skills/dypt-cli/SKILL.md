@@ -32,7 +32,9 @@ repository names dypt as its work tracker.
   match the recommended execution order. Use visible order for sequencing and
   dependencies only for true blocker relationships.
 - Preview cleanup operations before applying them.
-- Track discovered follow-up work as dypt tasks.
+- Track discovered follow-up work as dypt tasks only when the user request and
+  governing workflow authorize task writes. A workflow-specific approval
+  threshold or read-only boundary overrides this default.
 - Keep task status and notes current before handing off.
 - Do not create a parallel TODO tracker.
 
@@ -47,7 +49,8 @@ repository names dypt as its work tracker.
    `task reorder --preview` before applying a full sibling order.
 4. Record: update task notes with durable context and mark tasks completed only
    when the work is actually done.
-5. Handoff: create dypt tasks for remaining work instead of leaving loose TODOs.
+5. Handoff: when task writes are authorized, create dypt tasks for remaining
+   work instead of leaving loose TODOs.
 
 ## References
 
