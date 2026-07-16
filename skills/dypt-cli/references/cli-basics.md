@@ -94,6 +94,7 @@ Create tasks with useful metadata immediately when known.
 
 ```bash
 dypt task create "Write CLI docs" --parent 70867 --priority high --deadline 2026-05-05 --expected-time 60
+dypt task create "Plan release" --parent "CLI" --note "## Context\n\nShip the CLI and docs together."
 dypt task update 123 --priority high
 dypt task update 123 --deadline 2026-05-05
 dypt task update 123 --expected-time 45
@@ -101,6 +102,9 @@ dypt task update 123 --actual-time 50
 dypt task update 123 --position 2
 dypt task update 123 --status completed
 ```
+
+Use `--note <markdown>` when the task's initial context is already known. Task
+and note creation are atomic, so a note failure does not leave an empty task.
 
 Do not set a leaf task to `in progress`. Complete leaf tasks only when done.
 Parent `in progress` state is derived from children.

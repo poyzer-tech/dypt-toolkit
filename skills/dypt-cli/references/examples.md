@@ -63,8 +63,7 @@ Commands:
 
 ```bash
 dypt task search "version command" --scope "CLI"
-dypt task create "Add CLI version command" --parent "CLI" --priority high
-dypt note set <new-task-id> "## Goal
+dypt task create "Add CLI version command" --parent "CLI" --priority high --note "## Goal
 
 Expose the installed dypt CLI version so users and agents can report what they
 are running.
@@ -79,7 +78,8 @@ Expected behavior:
 
 - Search before creating.
 - Create the task in the proper branch.
-- Add enough notes that another agent can implement it.
+- Add enough initial context that another agent can implement it.
+- Use one atomic create operation when the note is already known.
 
 ## Example: Ambiguous Follow-Up Task
 

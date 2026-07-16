@@ -55,6 +55,12 @@ Use when a user asks an agent to implement a dypt task.
 6. Mark the task complete when finished.
 7. Create follow-up dypt tasks for remaining work.
 
+When a new task's context is known at creation time, prefer the atomic form:
+
+```bash
+dypt task create "Follow-up title" --parent <branch> --note "## Goal\n\nDescribe the work."
+```
+
 Do not mark a leaf task `in progress`; if the work needs staged tracking, create
 subtasks.
 
