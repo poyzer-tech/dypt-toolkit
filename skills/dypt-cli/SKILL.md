@@ -32,6 +32,11 @@ repository names dypt as its work tracker.
   match the recommended execution order. Use visible order for sequencing and
   dependencies only for true blocker relationships.
 - Preview cleanup operations before applying them.
+- Do not invent CLI subcommands, positional arguments, or option names. Before
+  an unfamiliar command or a multi-command mutation batch, copy the exact form
+  from `references/cli-basics.md` or run the specific command's `--help`. If a
+  command fails, inspect the error and confirmed syntax before retrying; do not
+  keep guessing variants.
 - Track discovered follow-up work as dypt tasks only when the user request and
   governing workflow authorize task writes. A workflow-specific approval
   threshold or read-only boundary overrides this default.
