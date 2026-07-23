@@ -57,9 +57,43 @@ Use when a user asks an agent to implement a dypt task.
 
 When a new task's context is known at creation time, prefer the atomic form:
 
-```bash
-dypt task create "Follow-up title" --parent <branch> --note "## Goal\n\nDescribe the work."
+```python
+import subprocess
+
+note = """## Goal
+
+Describe the work and preserve `inline code` literally."""
+subprocess.run(
+    ["dypt", "task", "create", "Follow-up title", "--parent", branch, "--note", note],
+    check=True,
+)
 ```
+
+Use argument arrays for dynamic titles and notes. Do not interpolate them into
+a shell command string.
+
+When the deadline and reminders are known at creation time, include repeatable
+reminder arguments in that same atomic create operation:
+
+```python
+subprocess.run(
+    [
+        "dypt",
+        "task",
+        "create",
+        "Prepare launch",
+        "--deadline",
+        "2026-08-01T09:00:00Z",
+        "--reminder",
+        "at-deadline",
+        "--reminder",
+        "1d",
+    ],
+    check=True,
+)
+```
+
+For existing tasks, use `dypt reminder list`, `add`, `set`, and `remove`.
 
 Do not mark a leaf task `in progress`; if the work needs staged tracking, create
 subtasks.

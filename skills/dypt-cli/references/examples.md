@@ -36,15 +36,21 @@ dypt dep list 123
 
 After implementation:
 
-```bash
-dypt note set 123 "## Implementation
+```python
+import subprocess
+
+note = """## Implementation
 
 - Added the requested behavior.
-- Validated with pnpm test:unit.
+- Validated with `pnpm test:unit`.
 
 ## Follow-up
 
-- [#456](#task-456)"
+- [#456](#task-456)"""
+subprocess.run(["dypt", "note", "set", "123", note], check=True)
+```
+
+```bash
 dypt task update 123 --status completed
 ```
 
@@ -63,7 +69,12 @@ Commands:
 
 ```bash
 dypt task search "version command" --scope "CLI"
-dypt task create "Add CLI version command" --parent "CLI" --priority high --note "## Goal
+```
+
+```python
+import subprocess
+
+note = """## Goal
 
 Expose the installed dypt CLI version so users and agents can report what they
 are running.
@@ -71,7 +82,22 @@ are running.
 ## Acceptance criteria
 
 - `dypt version` prints the current package version.
-- `dypt --version` still works."
+- `dypt --version` still works."""
+subprocess.run(
+    [
+        "dypt",
+        "task",
+        "create",
+        "Add CLI version command",
+        "--parent",
+        "CLI",
+        "--priority",
+        "high",
+        "--note",
+        note,
+    ],
+    check=True,
+)
 ```
 
 Expected behavior:
@@ -80,6 +106,35 @@ Expected behavior:
 - Create the task in the proper branch.
 - Add enough initial context that another agent can implement it.
 - Use one atomic create operation when the note is already known.
+- Read the created note back before continuing a bulk task-tree mutation.
+
+## Example: Create a Task With Reminders
+
+User intent: "Create the launch task with reminders at the deadline and one day
+before."
+
+Command:
+
+```bash
+dypt task create "Prepare launch" \
+  --deadline 2026-08-01T09:00:00Z \
+  --reminder at-deadline \
+  --reminder 1d
+```
+
+Verification:
+
+```bash
+dypt reminder list "Prepare launch"
+```
+
+Expected behavior:
+
+- Use repeatable `--reminder` options when the deadline and reminders are known
+  at creation time.
+- Treat the task, optional note, and reminders as one atomic write.
+- Use `dypt reminder add`, `set`, or `remove` for later changes.
+- Reject reminders without a deadline rather than creating a partial task.
 
 ## Example: Ambiguous Follow-Up Task
 

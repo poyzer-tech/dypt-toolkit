@@ -26,6 +26,12 @@ repository names dypt as its work tracker.
   automatically.
 - Format longer notes with appropriate markdown so they are well presented and
   readable rather than one large paragraph.
+- Pass dynamic titles and multiline markdown notes as argument arrays to a
+  non-shell process such as Python `subprocess.run([...])` or Node `execFile`.
+  Never interpolate user or markdown text into a shell command string, even
+  inside double quotes; backticks and `$()` can execute before dypt sees them.
+- After a failed write, inspect for a partial task or note before retrying. Read
+  notes back after bulk writes so quoting or transport damage is caught.
 - Do not set leaf tasks to `in progress`; dypt derives `in progress` for parent
   tasks from child state.
 - When creating a task tree from an implementation plan, set task positions to

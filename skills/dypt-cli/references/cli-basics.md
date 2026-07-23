@@ -94,7 +94,7 @@ Create tasks with useful metadata immediately when known.
 
 ```bash
 dypt task create "Write CLI docs" --parent 70867 --priority high --deadline 2026-05-05 --expected-time 60
-dypt task create "Plan release" --parent "CLI" --note "## Context\n\nShip the CLI and docs together."
+dypt task create "Prepare launch" --deadline 2026-08-01T09:00:00Z --reminder at-deadline --reminder 1d
 dypt task update 123 --priority high
 dypt task update 123 --deadline 2026-05-05
 dypt task update 123 --expected-time 45
@@ -105,9 +105,50 @@ dypt task update 123 --status completed
 
 Use `--note <markdown>` when the task's initial context is already known. Task
 and note creation are atomic, so a note failure does not leave an empty task.
+For dynamic or multiline text, bypass shell parsing and pass every value as one
+argument:
+
+```python
+import subprocess
+
+note = """## Context
+
+Ship the CLI and docs together using `dypt version`."""
+subprocess.run(
+    ["dypt", "task", "create", "Plan release", "--parent", "CLI", "--note", note],
+    check=True,
+)
+```
+
+Do not put dynamic titles or markdown inside a shell command string, including
+inside double quotes. After any failed create, search for a partially created
+task before retrying.
+
+Use repeatable `--reminder <timing>` options with `--deadline` when reminders
+are known during creation. The task, note, and up to three reminders are stored
+atomically. Supported timings are `at-deadline`, `15m`, `30m`, `1h`, `2h`,
+`3h`, `12h`, `1d`, and `1w`.
 
 Do not set a leaf task to `in progress`. Complete leaf tasks only when done.
 Parent `in progress` state is derived from children.
+
+## Reminders
+
+Use the dedicated reminder commands for existing tasks:
+
+```bash
+dypt reminder add 123 at-deadline 1d 1w
+dypt reminder list 123
+dypt reminder set 123 1h 1d
+dypt reminder remove 123 456
+```
+
+- `add` preserves existing reminders.
+- `set` atomically replaces the complete reminder collection.
+- `remove` targets the reminder id shown by `list`.
+- Add `--json` to any reminder command for structured verification output.
+- Adding and replacing require a task deadline, timings must be unique, and a
+  task can have at most three reminders.
 
 ## Position and Reorder Tasks
 
@@ -151,17 +192,27 @@ acceptance criteria. Use markdown formatting.
 
 ```bash
 dypt note get 123
-dypt note set 123 "## Context
+```
+
+Pass rich note content as one argument without a shell:
+
+```python
+import subprocess
+
+note = """## Context
 
 - This task depends on [#456](#task-456).
-- Keep the public docs aligned with the CLI README."
+- Keep the `codex exec` docs aligned with the CLI README."""
+subprocess.run(["dypt", "note", "set", "123", note], check=True)
 ```
+
+After bulk note writes, read the notes back and confirm the intended markdown
+survived unchanged.
 
 Task note aliases also exist:
 
 ```bash
 dypt task note get 123
-dypt task note set 123 "Updated note content"
 dypt task note search "release"
 ```
 
