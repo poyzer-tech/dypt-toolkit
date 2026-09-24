@@ -12,6 +12,10 @@ repository names dypt as its work tracker.
 
 - Use dypt tasks as the canonical work tracker.
 - Search before creating new tasks to avoid duplicates.
+- When completed history can establish prior work or prevent a duplicate, do
+  not rely on `task search` alone. Inspect the relevant scope with
+  `task list --archived all` and search notes or exact external source IDs as
+  applicable. Archived means hidden from the active work view, not irrelevant.
 - If the right parent or scope is not clear from the user request, current
   session, or repository guidance such as `AGENTS.md` or `CLAUDE.md`, ask the
   user to confirm before creating or moving tasks.
@@ -31,6 +35,10 @@ repository names dypt as its work tracker.
   non-shell process such as Python `subprocess.run([...])` or Node `execFile`.
   Never interpolate user or markdown text into a shell command string, even
   inside double quotes; backticks and `$()` can execute before dypt sees them.
+  For longer notes, write the markdown to a scratch file with the file-editing
+  tool and have the process read it, rather than embedding the text in the
+  command: safety hooks scan command text and can mistake words such as
+  "credentials" for a secret file.
 - After a failed write, inspect for a partial task or note before retrying. Read
   notes back after bulk writes so quoting or transport damage is caught.
 - Do not set leaf tasks to `in progress`; dypt derives `in progress` for parent
@@ -39,6 +47,9 @@ repository names dypt as its work tracker.
   match the recommended execution order. Use visible order for sequencing and
   dependencies only for true blocker relationships.
 - Preview cleanup operations before applying them.
+- Keep recurring coordinator/container tasks active and unarchived while their
+  workflow is active. Archive completed children after durable completion
+  evidence is recorded; do not archive a container that still owns open work.
 - Do not invent CLI subcommands, positional arguments, or option names. Before
   an unfamiliar command or a multi-command mutation batch, copy the exact form
   from `references/cli-basics.md` or run the specific command's `--help`. If a
