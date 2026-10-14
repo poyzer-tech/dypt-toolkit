@@ -12,6 +12,11 @@ repository names dypt as its work tracker.
 
 - Use dypt tasks as the canonical work tracker.
 - Search before creating new tasks to avoid duplicates.
+- Keep searches few and targeted. Each `task search` or `note search` reads
+  across your whole account, so a sweep of many keyword variants is slow and
+  costly. Use one or two broad keywords and read the results; scope task
+  searches with `--scope` or `--parent` when you know the area; browse a known
+  branch with `task tree` or `task list --parent` instead of searching it.
 - When completed history can establish prior work or prevent a duplicate, do
   not rely on `task search` alone. Inspect the relevant scope with
   `task list --archived all` and search notes or exact external source IDs as

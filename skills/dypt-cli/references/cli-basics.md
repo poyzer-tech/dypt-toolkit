@@ -88,6 +88,12 @@ dypt task search "publish" --scope "CLI" --limit 8
 dypt note search "agent workflow"
 ```
 
+Every search reads across the whole account, even with `--scope` or
+`--parent` (which narrow the results, not the work), and `note search` reads
+every note. Prefer one or two broad keywords over a sweep of many variants,
+and stop once you have what you need. When you know the branch, browse it with
+`task tree <ref>` or `task list --parent <ref>`, which read only that branch.
+
 ## Create and Update Tasks
 
 Create tasks with useful metadata immediately when known.
