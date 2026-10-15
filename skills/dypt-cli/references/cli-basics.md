@@ -85,14 +85,22 @@ Search when you do not know the exact task location.
 ```bash
 dypt task search "CLI docs"
 dypt task search "publish" --scope "CLI" --limit 8
+dypt task search "CLI docs" publish "release notes"
 dypt note search "agent workflow"
 ```
 
-Every search reads across the whole account, even with `--scope` or
-`--parent` (which narrow the results, not the work), and `note search` reads
-every note. Prefer one or two broad keywords over a sweep of many variants,
-and stop once you have what you need. When you know the branch, browse it with
-`task tree <ref>` or `task list --parent <ref>`, which read only that branch.
+Every task search reads across the whole account, even with `--scope` (which
+narrows the results, not the work); `--parent` reads only that parent's
+children. `note search` reads every note. Prefer one or two broad keywords
+over a sweep of many variants, and stop once you have what you need. When you
+need several task keywords, pass up to 10 to one `task search` call (CLI
+0.1.25+), quoting each multi-word query: the call reads the account once and
+prints results grouped per query (`--json`: `{ limit, groups: [{ query,
+items, nextCursor }] }`). Queries must differ and be at most 80 characters;
+the groups share 100 results (10 each for 10 queries), so page a single query
+for more. Cursors work with a single query only. When you know the
+branch, browse it with `task tree <ref>` or `task list --parent <ref>`, which
+read only that branch.
 
 ## Create and Update Tasks
 
