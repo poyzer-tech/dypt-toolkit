@@ -85,8 +85,9 @@ repository names dypt as its work tracker.
 
 ## References
 
-- Read `references/cli-basics.md` for command syntax, auth, filters, JSON
-  output, planning helpers, cleanup, and dependencies.
+- Read `references/cli-basics.md` for command syntax, auth, filters, tag
+  assignment/removal and CLI compatibility, JSON output, planning helpers,
+  cleanup, and dependencies.
 - Read `references/task-workflow-rules.md` before changing task state, notes,
   dependencies, hierarchy, or cleanup.
 - Read `references/playbook.md` for reusable CLI + agent workflow patterns.

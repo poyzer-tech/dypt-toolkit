@@ -146,6 +146,43 @@ atomically. Supported timings are `at-deadline`, `15m`, `30m`, `1h`, `2h`,
 Do not set a leaf task to `in progress`. Complete leaf tasks only when done.
 Parent `in progress` state is derived from children.
 
+## Tags
+
+Inspect the tag catalogue and add existing tags to tasks:
+
+```bash
+dypt tag list --json
+dypt tag assign 123 456 --tag project --tag focus --json
+dypt tag assign 123 --clear --json
+```
+
+### Selected-tag removal (upcoming CLI release)
+
+The next CLI release adds repeatable `--remove <name>` to `tag assign`:
+
+```bash
+dypt tag assign 123 456 --remove focus --json
+dypt tag assign 123 456 --remove focus --remove "deep work" --json
+```
+
+Check `dypt tag assign --help` before using `--remove`; the currently published
+CLI may not include it yet. Both the CLI option and server-side removal support
+must be available. If the option is unavailable, report that limitation rather
+than substituting a clear-and-readd sequence that can leave tags missing after
+a partial failure.
+
+One command removes every requested tag from every selected task atomically
+and preserves their other tags. Removing an existing tag that a task does not
+have is a successful no-op. Names use the same case and whitespace normalization
+as `--tag`; unknown or inactive names fail before any assignments change.
+
+Choose exactly one mode: repeat `--tag` to add, repeat `--remove` to remove, or
+use `--clear` to remove all tags. Modes cannot be combined. Existing tag-edit
+permissions and common-owner checks apply; each command is limited to 500 tasks
+and 500 task/tag combinations. Human output shows remaining tags. `--json`
+returns a tag array for one task or an array of tag arrays for multiple tasks,
+in task order.
+
 ## Reminders
 
 Use the dedicated reminder commands for existing tasks:
